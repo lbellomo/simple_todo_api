@@ -14,12 +14,14 @@ shelve_db = ShelveDB(shelve_path)
 
 @app.get("/task")
 async def get_tasks():
+    """Return all the task."""
     result = shelve_db.get_all()
     return {"message": "ok", "result": result}
 
 
 @app.post("/task")
 async def create_task(task: CreateTask):
+    """Create a new task."""
     next_id = shelve_db.get_next_id()
     date = datetime.datetime.now()
     task = Task(
@@ -40,6 +42,7 @@ async def create_task(task: CreateTask):
 
 @app.get("/task/{task_id}")
 async def get_task(task_id: int):
+    """Get a single task."""
     try:
         task = shelve_db.get(task_id)
     except KeyError:
@@ -52,6 +55,7 @@ async def get_task(task_id: int):
 
 @app.put("/task/{task_id}")
 async def update_task(task_id: int, status: str = "Done"):
+    """Change status of a task."""
     status = status.strip().capitalize()
 
     if status not in ["Done", "Pending", "Cancel"]:
@@ -74,6 +78,7 @@ async def update_task(task_id: int, status: str = "Done"):
 
 @app.delete("/task/{task_id}")
 async def delete_task(task_id: int):
+    """Delete a task."""
     try:
         shelve_db.delete(task_id)
     except KeyError:
