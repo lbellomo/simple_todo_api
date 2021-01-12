@@ -8,7 +8,7 @@ from app.models import CreateTask, Task
 
 shelve_path = environ.get("SHELVE_PATH", "/tmp/shelve.db")
 
-app = FastAPI()
+app = FastAPI(title="SimpleTodoAPI")
 shelve_db = ShelveDB(shelve_path)
 
 
