@@ -1,6 +1,8 @@
 # simple_todo_api
 
-## Installation
+## Local
+
+###  Installation
 
 Make sure you have [poetry](https://python-poetry.org/docs/#installation) installed.
 
@@ -15,7 +17,7 @@ poetry install
 poetry shell
 ```
 
-## Run
+### Run
 
 To run it make sure you have the virtual env activated (with `poetry shell`)
 
@@ -31,5 +33,24 @@ To run the tests simply do:
 
 ```bash
 pytest
+```
+
+## Docker
+
+### Setup
+
+```bash
+# clone this repo
+git clone https://github.com/lbellomo/simple_todo_api.git
+cd simple_todo_api
+
+docker-compose build
+```
+
+### Run
+
+```bash
+docker-compose up
+# in the browser go to http://localhost:8000/docs
 ```
 
